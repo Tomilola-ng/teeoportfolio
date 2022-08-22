@@ -13,13 +13,18 @@
 	    <div class="container">
 	      <div class="main--img">
 	        <img src="mypic.jpg" alt="My Pic">
+	        <div class="float"></div>
 	      </div>
 	      <div class="main--txt">
 	        <h1> Oluwafemi Tomilola Motolani </h1>
-	        <h3> dev_teeo creator of teeo_algorithms </h3>
+	        <h3> dev_teeo of teeo_algorithms </h3>
 	        <br>
 	        <p>
-	         I am a full stack Web developer with over a year experience and a  python programmer. I specialise in training algorithm, I have a page on Instagram where I teach All about algorithm. <br> Kindly check it out @teeo_algorithms 👍 </p>
+	         I am a full stack Web developer with over a year experience and a  python programmer. I specialise in training algorithm, I have a page on Instagram where I teach All about algorithm. 
+	         <br>
+	         <br>
+	         <small> Kindly check it out @teeo_algorithms 👍 </small>
+	         </p>
 	        <br> <br>
 	        <div class="main--link container">
 	          <a href="https://wa.me/+2349080347640" target="_blank" class="btn"> WhatsApp </a>
@@ -55,12 +60,12 @@
 	      <h1> Other Developing Skills  </h1>
 	      
 	      <div class="db--article container">
-	        <div class="db firebase"> FireBase </div>
-	        <div class="db github"> GitHub </div>
-	        <div class="db netlify"> Netlify </div>
-	        <div class="db web3"> Web3 </div>
-	        <div class="db sql"> SQL </div>
-	        <div class="db svg"> SVG & 3d Design </div>
+	        <div ontouchstart="active('.firebase')" class="db firebase"> FireBase </div>
+	        <div ontouchstart="active('.github')" class="db github"> GitHub </div>
+	        <div ontouchstart="active('.netlify')" class="db netlify"> Netlify </div>
+	        <div ontouchstart="active('.web3')" class="db web3"> Web3 </div>
+	        <div ontouchstart="active('.sql')" class="db sql"> SQL </div>
+	        <div ontouchstart="active('.svg')" class="db svg"> SVG & 3d Design </div>
 	      </div>
 	      
 	    </div>
@@ -73,6 +78,18 @@
 	        <p> Game Droid is an algorithm trained to put math equations into word problem to make the user think on their feets. It also plays Tic tac toe and is pretty undefeatable </p>
 	        <br>
 	        <a href="https://teeogamedroid.netlify.app/#home" class="btn"> Play Now </a>
+	      </div>
+	      <div class="project">
+	        <h2> Live Quadratic Calculator </h2>
+	        <div class="container eq">
+  	        <input type="number" placeholder="a" id="a">
+  	        <input type="number" placeholder="b" id="b">
+  	        <input type="number" placeholder="c" id="c">
+	        </div>
+	        <br>
+	        <p id="quadratic__note"> Fill in the three boxes </p>
+	        <br>
+	        <a onclick="quadratic__calc()" class="btn"> Solve </a>
 	      </div>
 	      
 	      <div class="contact">
@@ -97,10 +114,50 @@
 	  <footer>
 	    <div class="container line">
 	      <p> Developed by dev_teeo </p>
-	      <a href="#app" class="btn" target="_blank"> Back to top </a>
+	      <p onclick="window.scrollTo(0,0)" class="btn" target="_blank"> Back to top </p>
 	    </div>
 	  </footer>
 	  
 	</div>
+	
+	<script>
+	  function quadratic__calc() {
+	    let a = document.getElementById('a').value;
+	    let b = document.getElementById('b').value;
+	    let c = document.getElementById('c').value;
+	    let note = document.getElementById('quadratic__note');
+	    
+	    if (a == '' || b == '' || c == '') {
+	      note.innerText = 'Fill in the three boxes';
+	      return;
+	    }
+	    
+	    let stepone = -1 * b;
+	    let steptwo = b * b - (4 * a * c);
+	    steptwo = Math.sqrt(steptwo);
+	    let stepthree =  2 * a ;
+	    let stepfour = ( ( stepone - steptwo ) / stepthree );
+	    let stepfive = ( ( stepone + steptwo ) / stepthree );
+	    
+	    let answer = ` The answer is ${stepfour} or ${stepfive}`;
+	    
+	    if (!stepfour) {
+	      note.innerText = 'Couldn\'t Solve 404 error';
+	      return;
+	    }
+	    note.innerText = answer;
+	  }
+	  
+	  function active(e) {
+	    document.querySelectorAll('.db').forEach(d => d.classList.remove('active'))
+	    
+	    document.querySelector(e).classList.add('active');
+	    
+	    window.ontouchmove = () => {
+	      document.querySelectorAll('.db').forEach(d => d.classList.remove('active'))
+	    }
+	  }
+	</script>
+	
 </body>
 </html>
